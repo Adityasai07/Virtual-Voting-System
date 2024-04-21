@@ -1,0 +1,72 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection</title>
+</head>
+<body>
+    <h1>Face Detection</h1>
+    <form id="startForm" action="/start_detection" method="post">
+        <input type="submit" value="Start Face Detection">
+    </form>
+    <h2>Camera</h2>
+    <video id="videoFeed" width="640" height="480" style="display:none;"></video>
+    <button id="captureButton" onclick="captureImage()" style="display:none;">Capture</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <script>
+        const startForm = document.getElementById('startForm');
+        const captureButton = document.getElementById('captureButton');
+        const video = document.getElementById('videoFeed');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        let stream = null;
+
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(newStream) {
+                    stream = newStream;
+                    video.srcObject = stream;
+                    video.play();
+                    captureButton.style.display = 'block';
+                })
+                .catch(function(err) {
+                    console.error('Error accessing the camera.', err);
+                });
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(function(track) {
+                    track.stop();
+                });
+                video.srcObject = null;
+                captureButton.style.display = 'none';
+            }
+        }
+
+        function captureImage() {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(sendToServer, 'image/jpeg');
+        }
+
+        function sendToServer(blob) {
+            const formData = new FormData();
+            formData.append('image', blob);
+            fetch('/capture', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        }
+
+        startForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            startCamera();
+        });
+    </script>
+</body>
+</html>

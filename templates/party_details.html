@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button[type="submit"], button[type="button"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+        button[type="submit"]:hover, button[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ admin_name }}</h2>
+        <h2>Enter Party Details</h2>
+        <form action="/party_details/{{ num_parties }}/{{ admin_name }}" method="post">
+            {% for i in range(num_parties) %}
+            <div>
+                <label for="party_name_{{ i }}">Party Name:</label>
+                <input type="text" id="party_name_{{ i }}" name="party_name_{{ i }}" required>
+                <label for="party_symbol_{{ i }}">Party Symbol:</label>
+                <input type="text" id="party_symbol_{{ i }}" name="party_symbol_{{ i }}" required>
+            </div>
+            <br>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>        
+        <button type="button" onclick="location.href='/election_options/{{ admin_name }}';">Back to Election</button>
+    </div>
+</body>
+</html>

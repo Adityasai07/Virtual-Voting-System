@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ voterName }}!</h2>
+        <p>Your Voter ID: {{ voterId }}</p>
+        <p>Father Name: {{ fatherName }}</p>
+        <p>Mother Name : {{ motherName }}</p>
+        <p>Your Age : {{ age }}</p>
+        <p>Mobile Number : {{ mobileNumber }}</p>
+        <!-- Option to start voting -->
+        <form action="/vote" method="get">
+            <input type="hidden" name="voterId" value="{{ voterId }}">
+            <input type="hidden" name="voterName" value="{{ voterName }}">
+            <button type="submit">Start Voting</button>
+        </form>
+        <!-- Back button to move to voter_login.html -->
+        <a class="back-btn" href="/voter_login.html">Back to Voter Login</a>
+    </div>
+</body>
+</html>

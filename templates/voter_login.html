@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Sign In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            overflow: hidden; /* Prevent scrollbars caused by the video */
+        }
+
+        #starsbackground {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Ensure the video is behind other content */
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none; /* Remove default input focus outline */
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            outline: none; /* Remove default button focus outline */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<video id="starsbackground" autoplay muted loop>
+    <source src="{{ url_for('static', filename='v1.mp4') }}" type="video/mp4">
+    Browser not Supporting
+</video>
+
+<div class="container">
+    <div class="card">
+        <h2>Voter Sign In</h2>
+        <form action="/voter_verification" method="post">
+            <label for="voterId">Voter ID:</label><br>
+            <input type="text" id="voterId" name="voterId" placeholder="Enter your Voter ID" required><br>
+            <input type="submit" value="Sign In">
+        </form>
+        <br>
+        <a href="/">Go back to Home Page</a>
+    </div>
+</div>
+
+</body>
+</html>

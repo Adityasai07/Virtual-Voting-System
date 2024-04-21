@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Election</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome {{ admin_name }}: </h2>
+    <h2>Parties and Voter Counts</h2>
+    <table>
+        <tr>
+            <th>Party Name</th>
+            <th>Number of Votes</th>
+        </tr>
+        {% for party in parties_data %}
+        <tr>
+            <td>{{ party[0] }}</td>
+            <td>{{ party[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div style="text-align: center;">
+        <a href="{{ url_for('election_options', admin_name=admin_name) }}">Go to Home Page</a>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - Sign In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='Signup.css') }}">
+
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>          
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <video id="starsbackground" autoplay muted loop>
+        <source src="{{ url_for('static', filename='v1.mp4') }}" type="video/mp4">
+        Browser not Supporting
+    </video>  
+    <div class="main" id="content">
+      <div class="container a-container" id="a-container">
+        <form class="form" id="a-form" method="post" action="/signupAdmin">
+          <h2 class="form_title title">Create Account</h2>
+          <div class="form__icons">
+            <img class="form__icon" src="{{ url_for('static', filename='facebook.svg') }}">
+            <img class="form__icon" src="{{ url_for('static', filename='google.svg') }}">
+            <img class="form__icon" src="{{ url_for('static', filename='instagram1.svg') }}">
+          </div><span class="form__span">or use email for registration</span>
+          <input class="form__input" type="text" placeholder="Name" name ="username">
+          <input class="form__input" id="text2" type="text" placeholder="Email" name="email" onblur="validateEmailLogin()">
+          <p id="valid2" style="color: red;"></p>
+          <input class="form__input" type="password" id="password" placeholder="Password" name="password">
+          <input class="form__input" type="password" id="Cpassword" placeholder="Confirm Password" name="Cpassword" onblur="validPassword()">
+          <p id="valid3" style="color: red;"></p>
+          <button class="form__button button switch-btn" type='submit' name ="signup">SIGN UP</button>
+        </form>
+      </div>
+      <div class="container b-container" id="b-container">
+        <form class="form" id="b-form" method="post" action="/signinAdmin">
+          <h2 class="form_title title">Sign in to Website</h2> 
+          <div class="form__icons">
+            <img class="form__icon" src="{{ url_for('static', filename='facebook.svg') }}">
+            <img class="form__icon" src="{{ url_for('static', filename='google.svg') }}">
+            <img class="form__icon" src="{{ url_for('static', filename='instagram1.svg') }}">
+          </div><span class="form__span">or use email for registration</span>
+          <input class="form__input" id="text1" type="text" placeholder="Email" name = "email">
+          <p id="valid1" style="color: red;"></p>
+          <input class="form__input" type="password" placeholder="Password" name = "password"><a class="form__link">Forgot your password?</a>
+          <button class="form__button button switch-btn" name = "signin">SIGN IN</button>
+        </form>
+      </div>
+      <div class="switch" id="switch-cnt">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circle--t"></div>
+        <div class="switch__container" id="switch-c1">
+          <h2 class="switch__title title">Welcome Back !</h2>
+          <p class="switch__description description">To keep connected with us please login with your personal info</p>
+          <button class="switch__button button switch-btn">GO TO SIGN IN</button>
+        </div>
+        <div class="switch__container is-hidden" id="switch-c2">
+          <h2 class="switch__title title">Hello Friend !</h2>
+          <p class="switch__description description">Enter your personal details and start journey with us</p>
+          <button class="switch__button button switch-btn">GO TO SIGN UP</button>
+        </div>
+      </div> 
+    </div>
+  </body>
+</html>
+  <script   src="{{ url_for('static', filename='Signup.js') }}"></script>
+</body>
+</html>

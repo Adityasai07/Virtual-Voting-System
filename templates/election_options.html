@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Options</title>
+    <style>
+        /* Your CSS styles */        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            width: 50%;
+            text-align: center;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            color: #555;
+        }
+    </style>
+    <script>
+        // Function to display pop-up message for 4 seconds
+        function displayPopup(message) {
+            var popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.textContent = message;
+            document.body.appendChild(popup);
+            setTimeout(function() {
+                popup.remove();
+            }, 4000); // Remove the pop-up after 4 seconds
+        }
+
+        // Check if there is a success message to display
+        window.onload = function() {
+            var message = "{{ message }}";
+            if (message) {
+                displayPopup(message);
+            }
+        };
+    </script>
+</head>
+<body>
+
+<h2>Welcome {{ admin_name }}</h2>
+
+<ul>
+    <li><a href="{{ url_for('create_election', admin_name=admin_name) }}">Create Election</a></li>
+    <li><a href="/delete_election/{{ admin_name }}">Delete Election</a></li>
+    <li><a href="/view_election/{{ admin_name }}">View Election</a></li>
+</ul>
+{% if message %}
+    <div>{{ message }}</div>
+    {% endif %}
+<center><a href="/">Go to Home Page</a></center>
+
+</body>
+</html>
